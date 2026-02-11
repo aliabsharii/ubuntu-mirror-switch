@@ -52,4 +52,4 @@ http://ubuntu.pishgaman.net/ubuntu/
 
 ## 👨‍💻 Author
 
-Ali Absharii
+Ali Abshari
