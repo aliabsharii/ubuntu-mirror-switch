@@ -17,7 +17,7 @@ echo "Ubuntu version detected: $VERSION"
 # ساخت پوشه بکاپ
 mkdir -p $BACKUP_DIR
 
-# گرفتن بکاپ و انتقال به پوشه امن
+# گرفتن بکاپ
 cp $FILE ${BACKUP_DIR}/ubuntu.sources.bak.$(date +%F-%H%M)
 
 echo "Writing new mirror config..."
@@ -30,13 +30,16 @@ Components: main restricted universe multiverse
 Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
 EOF
 
-# پاک کردن بکاپ‌های قدیمی اگر اشتباهی داخل sources.list.d مانده باشند
+# انتقال بکاپ‌های قدیمی احتمالی
 mv /etc/apt/sources.list.d/*.bak.* $BACKUP_DIR 2>/dev/null
 
 echo "Cleaning apt cache..."
 apt clean
 
-echo "Updating..."
+echo "Running apt update..."
 apt update
 
-echo "===== Mirror successfully updated ====="
+echo "Running apt upgrade..."
+apt upgrade -y
+
+echo "===== Mirror updated & system upgraded successfully ====="
